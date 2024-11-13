@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="tbank.mr_irmag.cbr_ru.config.CacheConfigTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2024-10-10T17:54:55" hostname="Haleds-MBP" time="0.033">
+  <properties/>
+  <testcase name="customKeyGenerator_SuccessGeneration_ShouldGenerateCorrectKey()" classname="tbank.mr_irmag.cbr_ru.config.CacheConfigTest" time="0.033"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

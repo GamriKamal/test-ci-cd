@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>CurrencyApiService.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">cbr_ru</a> &gt; <a href="index.source.html" class="el_package">tbank.mr_irmag.cbr_ru.service</a> &gt; <span class="el_source">CurrencyApiService.java</span></div><h1>CurrencyApiService.java</h1><pre class="source lang-java linenums">package tbank.mr_irmag.cbr_ru.service;
+
+import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
+import lombok.extern.log4j.Log4j2;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.http.HttpStatus;
+import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
+import tbank.mr_irmag.cbr_ru.DTO.ConvertCurrencyRequest;
+import tbank.mr_irmag.cbr_ru.exception.CurrencyNotFoundException;
+import tbank.mr_irmag.cbr_ru.exception.ServiceUnavailableException;
+
+import java.util.Currency;
+
+@Service
+<span class="fc" id="L18">@Log4j2</span>
+<span class="fc" id="L19">public class CurrencyApiService {</span>
+    private RestTemplate restTemplate;
+    @Value(&quot;${cbr.url.currencyCodes}&quot;)
+    private String currencyCodesUrl;
+
+    @Autowired
+    public void setRestTemplate(RestTemplate restTemplate) {
+<span class="fc" id="L26">        this.restTemplate = restTemplate;</span>
+<span class="fc" id="L27">    }</span>
+
+    @Cacheable(value = &quot;currencyDataCache&quot;, key = &quot;#request.fromCurrency + '-' + #request.toCurrency&quot;)
+    @CircuitBreaker(name = &quot;currencyApiService&quot;, fallbackMethod = &quot;fallbackFetchCurrencyData&quot;)
+    public String fetchCurrencyDataWithRequest(ConvertCurrencyRequest request) throws Exception {
+
+<span class="fc" id="L33">        var response = restTemplate.getForEntity(currencyCodesUrl, String.class);</span>
+
+<span class="fc bfc" id="L35" title="All 2 branches covered.">        if (response.getStatusCode() == HttpStatus.OK) {</span>
+<span class="fc" id="L36">            log.info(&quot;Successfully retrieved response {} {}&quot;, response.getHeaders(), response.getStatusCode());</span>
+<span class="fc" id="L37">            return response.getBody();</span>
+<span class="pc bpc" id="L38" title="1 of 2 branches missed.">        } else if (response.getStatusCode() == HttpStatus.SERVICE_UNAVAILABLE) {</span>
+<span class="fc" id="L39">            throw new ServiceUnavailableException(&quot;Currency service is currently unavailable&quot;);</span>
+        } else {
+<span class="nc" id="L41">            throw new Exception(&quot;Failed to retrieve currency data&quot;);</span>
+        }
+    }
+
+    @Cacheable(value = &quot;currencyDataCache&quot;, key = &quot;#code&quot;)
+    @CircuitBreaker(name = &quot;currencyApiService&quot;, fallbackMethod = &quot;fallbackFetchCurrencyData&quot;)
+    public String fetchCurrencyDataWithCode(String code) throws Exception {
+<span class="pc bpc" id="L48" title="1 of 4 branches missed.">        if (code == null || code.isBlank()) {</span>
+<span class="fc" id="L49">            throw new NullPointerException(&quot;Provided currency code is null!&quot;);</span>
+        }
+
+
+<span class="fc" id="L53">        var response = restTemplate.getForEntity(currencyCodesUrl, String.class);</span>
+
+<span class="fc bfc" id="L55" title="All 2 branches covered.">        if (response.getStatusCode() == HttpStatus.OK) {</span>
+<span class="fc" id="L56">            log.info(&quot;Successfully retrieved response {} {}&quot;, response.getHeaders(), response.getStatusCode());</span>
+<span class="fc" id="L57">            return response.getBody();</span>
+<span class="pc bpc" id="L58" title="1 of 2 branches missed.">        } else if (response.getStatusCode() == HttpStatus.SERVICE_UNAVAILABLE) {</span>
+<span class="fc" id="L59">            throw new ServiceUnavailableException(&quot;Currency service is currently unavailable&quot;);</span>
+        } else {
+<span class="nc" id="L61">            throw new Exception(&quot;Failed to retrieve currency data&quot;);</span>
+        }
+    }
+
+    public String fallbackFetchCurrencyData(String fromCurrency, String toCurrency, Exception e) {
+<span class="fc" id="L66">        log.warn(&quot;Fallback executed due to: {}&quot;, e.getMessage());</span>
+<span class="fc" id="L67">        return &quot;Currency data is currently unavailable. Please try again later.&quot;;</span>
+    }
+}
+
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

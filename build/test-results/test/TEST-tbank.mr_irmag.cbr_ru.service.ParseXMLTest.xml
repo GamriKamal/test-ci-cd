@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="tbank.mr_irmag.cbr_ru.service.ParseXMLTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2024-10-10T17:55:02" hostname="Haleds-MBP" time="0.039">
+  <properties/>
+  <testcase name="getValueOfCode_NegativeCase_ShouldReturnNullIfCodeNotFound()" classname="tbank.mr_irmag.cbr_ru.service.ParseXMLTest" time="0.028"/>
+  <testcase name="getValueOfCode_ExceptionCase_ShouldThrowRuntimeExceptionOnInvalidXML()" classname="tbank.mr_irmag.cbr_ru.service.ParseXMLTest" time="0.007"/>
+  <testcase name="getValueOfCode_PositiveCase_ShouldReturnCorrectValue()" classname="tbank.mr_irmag.cbr_ru.service.ParseXMLTest" time="0.003"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[[Fatal Error] :1:42: XML document structures must start and end within the same entity.
+]]></system-err>
+</testsuite>
