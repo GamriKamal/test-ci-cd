@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="tbank.mr_irmag.cbr_ru.controller.CentralBankControllerTest" tests="5" skipped="0" failures="0" errors="0" timestamp="2024-10-10T17:55:01" hostname="Haleds-MBP" time="0.496">
+  <properties/>
+  <testcase name="getCurrencyExchangeRate_SuccessGiveCurrency_ShouldGiveValidCode()" classname="tbank.mr_irmag.cbr_ru.controller.CentralBankControllerTest" time="0.265"/>
+  <testcase name="handleServiceUnavailableException_SuccessHandleException_ShouldThrowsExcpetion()" classname="tbank.mr_irmag.cbr_ru.controller.CentralBankControllerTest" time="0.184"/>
+  <testcase name="convertCurrency_NotSuccess_InvalidRequest()" classname="tbank.mr_irmag.cbr_ru.controller.CentralBankControllerTest" time="0.024"/>
+  <testcase name="getCurrencyExchangeRate_NotSuccess_ShouldReturnInvalidCode()" classname="tbank.mr_irmag.cbr_ru.controller.CentralBankControllerTest" time="0.006"/>
+  <testcase name="convertCurrency_SuccessConvertingCurrency_ShouldReturnValidRequest()" classname="tbank.mr_irmag.cbr_ru.controller.CentralBankControllerTest" time="0.01"/>
+  <system-out><![CDATA[2024-10-10T22:55:01.346+05:00  INFO 42460 --- [cbr_ru] [    Test worker] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [tbank.mr_irmag.cbr_ru.controller.CentralBankControllerTest]: CentralBankControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2024-10-10T22:55:01.378+05:00  INFO 42460 --- [cbr_ru] [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration tbank.mr_irmag.cbr_ru.CbrRuApplication for test class tbank.mr_irmag.cbr_ru.controller.CentralBankControllerTest
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+ :: Spring Boot ::                (v3.3.4)
+
+2024-10-10T22:55:01.415+05:00  INFO 42460 --- [cbr_ru] [    Test worker] t.m.c.c.CentralBankControllerTest        : Starting CentralBankControllerTest using Java 17.0.12 with PID 42460 (started by khgamri in /Users/khgamri/Documents/T-Bank/Java_projects/cbr_ru)
+2024-10-10T22:55:01.416+05:00  INFO 42460 --- [cbr_ru] [    Test worker] t.m.c.c.CentralBankControllerTest        : No active profile set, falling back to 1 default profile: "default"
+2024-10-10T22:55:01.697+05:00  INFO 42460 --- [cbr_ru] [    Test worker] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2024-10-10T22:55:01.697+05:00  INFO 42460 --- [cbr_ru] [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2024-10-10T22:55:01.700+05:00  INFO 42460 --- [cbr_ru] [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 1 ms
+2024-10-10T22:55:01.709+05:00  INFO 42460 --- [cbr_ru] [    Test worker] t.m.c.c.CentralBankControllerTest        : Started CentralBankControllerTest in 0.325 seconds (process running for 7.39)
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

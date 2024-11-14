@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="tbank.mr_irmag.cbr_ru.CbrRuApplicationTests" tests="1" skipped="0" failures="0" errors="0" timestamp="2024-10-10T17:55:00" hostname="Haleds-MBP" time="0.817">
+  <properties/>
+  <testcase name="contextLoads()" classname="tbank.mr_irmag.cbr_ru.CbrRuApplicationTests" time="0.817"/>
+  <system-out><![CDATA[22:54:56.139 [Test worker] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [tbank.mr_irmag.cbr_ru.CbrRuApplicationTests]: CbrRuApplicationTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+22:54:56.366 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration tbank.mr_irmag.cbr_ru.CbrRuApplication for test class tbank.mr_irmag.cbr_ru.CbrRuApplicationTests
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+ :: Spring Boot ::                (v3.3.4)
+
+2024-10-10T22:54:57.221+05:00  INFO 42460 --- [cbr_ru] [    Test worker] t.mr_irmag.cbr_ru.CbrRuApplicationTests  : Starting CbrRuApplicationTests using Java 17.0.12 with PID 42460 (started by khgamri in /Users/khgamri/Documents/T-Bank/Java_projects/cbr_ru)
+2024-10-10T22:54:57.223+05:00  INFO 42460 --- [cbr_ru] [    Test worker] t.mr_irmag.cbr_ru.CbrRuApplicationTests  : No active profile set, falling back to 1 default profile: "default"
+2024-10-10T22:55:00.204+05:00  INFO 42460 --- [cbr_ru] [    Test worker] t.mr_irmag.cbr_ru.CbrRuApplicationTests  : Started CbrRuApplicationTests in 3.544 seconds (process running for 5.885)
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

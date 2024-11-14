@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ParseXML.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">cbr_ru</a> &gt; <a href="index.source.html" class="el_package">tbank.mr_irmag.cbr_ru.service</a> &gt; <span class="el_source">ParseXML.java</span></div><h1>ParseXML.java</h1><pre class="source lang-java linenums">package tbank.mr_irmag.cbr_ru.service;
+
+import lombok.extern.log4j.Log4j2;
+import org.springframework.stereotype.Service;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.NodeList;
+import org.xml.sax.InputSource;
+import org.xml.sax.SAXException;
+
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+import java.io.IOException;
+import java.io.StringReader;
+
+@Service
+<span class="fc" id="L18">@Log4j2</span>
+<span class="fc" id="L19">public class ParseXML {</span>
+    public String getValueOfCode(String code, String xml) {
+        try {
+<span class="fc" id="L22">            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();</span>
+<span class="fc" id="L23">            DocumentBuilder builder = factory.newDocumentBuilder();</span>
+<span class="fc" id="L24">            Document document = builder.parse(new InputSource(new StringReader(xml)));</span>
+<span class="fc" id="L25">            document.getDocumentElement().normalize();</span>
+
+<span class="fc" id="L27">            NodeList valutes = document.getElementsByTagName(&quot;Valute&quot;);</span>
+<span class="fc bfc" id="L28" title="All 2 branches covered.">            for (int i = 0; i &lt; valutes.getLength(); i++) {</span>
+<span class="fc" id="L29">                Element valute = (Element) valutes.item(i);</span>
+
+<span class="fc" id="L31">                String charCode = valute.getElementsByTagName(&quot;CharCode&quot;).item(0).getTextContent();</span>
+
+<span class="fc bfc" id="L33" title="All 2 branches covered.">                if (charCode.equals(code)) {</span>
+<span class="fc" id="L34">                    String value = valute.getElementsByTagName(&quot;VunitRate&quot;).item(0).getTextContent();</span>
+<span class="fc" id="L35">                    return value;</span>
+                }
+            }
+
+<span class="nc" id="L39">        } catch (ParserConfigurationException e) {</span>
+<span class="nc" id="L40">            throw new RuntimeException(e);</span>
+<span class="nc" id="L41">        } catch (IOException e) {</span>
+<span class="nc" id="L42">            throw new RuntimeException(e);</span>
+<span class="fc" id="L43">        } catch (SAXException e) {</span>
+<span class="fc" id="L44">            throw new RuntimeException(e);</span>
+<span class="fc" id="L45">        }</span>
+
+<span class="fc" id="L47">        return null;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

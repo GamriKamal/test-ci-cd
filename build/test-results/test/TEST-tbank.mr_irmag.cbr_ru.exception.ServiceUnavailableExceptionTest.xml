@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="tbank.mr_irmag.cbr_ru.exception.ServiceUnavailableExceptionTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2024-10-10T17:55:02" hostname="Haleds-MBP" time="0.001">
+  <properties/>
+  <testcase name="constructor_ShouldReturnCorrectMessage()" classname="tbank.mr_irmag.cbr_ru.exception.ServiceUnavailableExceptionTest" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="tbank.mr_irmag.cbr_ru.Advice.DefaultAdviceTest" tests="5" skipped="0" failures="0" errors="0" timestamp="2024-10-10T17:55:01" hostname="Haleds-MBP" time="0.285">
+  <properties/>
+  <testcase name="handleGeneralException_PositiveCase_ShouldReturnErrorResponseWithCorrectDetails()" classname="tbank.mr_irmag.cbr_ru.Advice.DefaultAdviceTest" time="0.005"/>
+  <testcase name="handleCurrencyFromAndToAreEqualException_PositiveCase_ShouldReturnErrorResponseWithCorrectDetails()" classname="tbank.mr_irmag.cbr_ru.Advice.DefaultAdviceTest" time="0.001"/>
+  <testcase name="handleConstraintViolation_PositiveCase_ShouldReturnBadRequestWithErrors()" classname="tbank.mr_irmag.cbr_ru.Advice.DefaultAdviceTest" time="0.273"/>
+  <testcase name="handleCurrencyConversionException_PositiveCase_ShouldReturnErrorResponseWithCorrectDetails()" classname="tbank.mr_irmag.cbr_ru.Advice.DefaultAdviceTest" time="0.002"/>
+  <testcase name="handleNullPointerException_PositiveCase_ShouldReturnErrorResponseWithCorrectDetails()" classname="tbank.mr_irmag.cbr_ru.Advice.DefaultAdviceTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

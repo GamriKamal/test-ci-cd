@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="tbank.mr_irmag.cbr_ru.service.CentralBankServiceTest" tests="8" skipped="0" failures="0" errors="0" timestamp="2024-10-10T17:55:02" hostname="Haleds-MBP" time="0.079">
+  <properties/>
+  <testcase name="getValueOfCurrencyByCode_InvalidCode_ThrowsException()" classname="tbank.mr_irmag.cbr_ru.service.CentralBankServiceTest" time="0.058"/>
+  <testcase name="convertCurrency_PositiveCase_ShouldCalculateConversionSuccessfully()" classname="tbank.mr_irmag.cbr_ru.service.CentralBankServiceTest" time="0.002"/>
+  <testcase name="convertCurrency_NegativeCase_ToCurrencyIsNull_ShouldThrowCurrencyConversionException()" classname="tbank.mr_irmag.cbr_ru.service.CentralBankServiceTest" time="0.001"/>
+  <testcase name="convertCurrency_NegativeCase_FromCurrencyEqualsToCurrency_ShouldThrowCurrencyFromAndToAreEqualException()" classname="tbank.mr_irmag.cbr_ru.service.CentralBankServiceTest" time="0.005"/>
+  <testcase name="getValueOfCurrencyByCode_ValidCode_ReturnsValue()" classname="tbank.mr_irmag.cbr_ru.service.CentralBankServiceTest" time="0.001"/>
+  <testcase name="convertCurrency_NegativeCase_FromCurrencyIsNull_ShouldThrowCurrencyConversionException()" classname="tbank.mr_irmag.cbr_ru.service.CentralBankServiceTest" time="0.002"/>
+  <testcase name="convertCurrency_FromAndToAreEqual_ThrowsException()" classname="tbank.mr_irmag.cbr_ru.service.CentralBankServiceTest" time="0.002"/>
+  <testcase name="convertCurrency_ValidRequest_ReturnsConvertedAmount()" classname="tbank.mr_irmag.cbr_ru.service.CentralBankServiceTest" time="0.001"/>
+  <system-out><![CDATA[2024-10-10T22:55:02.298+05:00 ERROR 42460 --- [cbr_ru] [    Test worker] t.m.cbr_ru.service.CentralBankService    : Currency from and currency to are equal! USD USD
+2024-10-10T22:55:02.309+05:00 ERROR 42460 --- [cbr_ru] [    Test worker] t.m.cbr_ru.service.CentralBankService    : Currency from and currency to are equal! USD USD
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
