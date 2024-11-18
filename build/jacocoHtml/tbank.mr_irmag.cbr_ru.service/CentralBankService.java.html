@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>CentralBankService.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">cbr_ru</a> &gt; <a href="index.source.html" class="el_package">tbank.mr_irmag.cbr_ru.service</a> &gt; <span class="el_source">CentralBankService.java</span></div><h1>CentralBankService.java</h1><pre class="source lang-java linenums">package tbank.mr_irmag.cbr_ru.service;
+
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.validation.annotation.Validated;
+import tbank.mr_irmag.cbr_ru.DTO.ConvertCurrencyRequest;
+import tbank.mr_irmag.cbr_ru.exception.CurrencyConversionException;
+import tbank.mr_irmag.cbr_ru.exception.CurrencyFromAndToAreEqualException;
+
+import java.text.DecimalFormat;
+
+@Service
+<span class="fc" id="L14">@Slf4j</span>
+@Validated
+public class CentralBankService {
+    private final CurrencyApiService apiService;
+    private final CurrencyParserService parserService;
+<span class="fc" id="L19">    private final DecimalFormat df = new DecimalFormat(&quot;###.###&quot;);</span>
+
+    @Autowired
+<span class="fc" id="L22">    public CentralBankService(CurrencyApiService apiService, CurrencyParserService parserService) {</span>
+<span class="fc" id="L23">        this.apiService = apiService;</span>
+<span class="fc" id="L24">        this.parserService = parserService;</span>
+<span class="fc" id="L25">    }</span>
+
+    public double getValueOfCurrencyByCode(String code) throws Exception {
+<span class="fc" id="L28">        String currencyData = apiService.fetchCurrencyDataWithCode(code);</span>
+<span class="fc" id="L29">        String result = parserService.getCurrencyValueByCode(code, currencyData);</span>
+<span class="fc" id="L30">        return Double.parseDouble(result.replace(&quot;,&quot;, &quot;.&quot;));</span>
+    }
+
+    public double convertCurrency(ConvertCurrencyRequest request) throws Exception {
+
+<span class="fc bfc" id="L35" title="All 2 branches covered.">        if (request.getFromCurrency() == null) {</span>
+<span class="fc" id="L36">            throw new CurrencyConversionException(&quot;From currency cannot be null!&quot;, &quot;fromCurrency&quot;);</span>
+        }
+
+<span class="fc bfc" id="L39" title="All 2 branches covered.">        if (request.getToCurrency() == null) {</span>
+<span class="fc" id="L40">            throw new CurrencyConversionException(&quot;To currency cannot be null!&quot;, &quot;toCurrency&quot;);</span>
+        }
+
+<span class="fc bfc" id="L43" title="All 2 branches covered.">        if (request.getFromCurrency().equals(request.getToCurrency())) {</span>
+<span class="fc" id="L44">            log.error(&quot;Currency from and currency to are equal! {} {}&quot;, request.getFromCurrency(), request.getToCurrency());</span>
+<span class="fc" id="L45">            throw new CurrencyFromAndToAreEqualException(&quot;Currency from and currency to are equal! &quot; + request.getFromCurrency() + request.getToCurrency());</span>
+        }
+
+<span class="fc" id="L48">        String currencyData = apiService.fetchCurrencyDataWithRequest(request);</span>
+
+<span class="fc" id="L50">        double result = calculateConversion(request, currencyData);</span>
+<span class="fc" id="L51">        return result;</span>
+    }
+
+    private double calculateConversion(ConvertCurrencyRequest request, String currencyData) {
+
+<span class="pc bpc" id="L56" title="1 of 2 branches missed.">        if (request.getToCurrency().equals(&quot;RUB&quot;)) {</span>
+<span class="fc" id="L57">            String currencyValue = parserService.getCurrencyValueByCode(request.getFromCurrency(), currencyData);</span>
+
+<span class="fc" id="L59">            double currencyInNum = Double.parseDouble(currencyValue.replace(&quot;,&quot;, &quot;.&quot;));</span>
+<span class="fc" id="L60">            double resultValue = currencyInNum * request.getAmount();</span>
+<span class="fc" id="L61">            return resultValue;</span>
+        } else {
+<span class="nc" id="L63">            String fromCurrencyValue = parserService.getCurrencyValueByCode(request.getFromCurrency(), currencyData);</span>
+<span class="nc" id="L64">            String toCurrencyValue = parserService.getCurrencyValueByCode(request.getToCurrency(), currencyData);</span>
+
+<span class="nc" id="L66">            double fromValue = Double.parseDouble(fromCurrencyValue.replace(&quot;,&quot;, &quot;.&quot;));</span>
+<span class="nc" id="L67">            double toValue = Double.parseDouble(toCurrencyValue.replace(&quot;,&quot;, &quot;.&quot;));</span>
+<span class="nc" id="L68">            double resultValue = (fromValue / toValue) * request.getAmount();</span>
+<span class="nc" id="L69">            return Double.parseDouble(df.format(resultValue).replace(&quot;,&quot;, &quot;.&quot;));</span>
+        }
+    }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

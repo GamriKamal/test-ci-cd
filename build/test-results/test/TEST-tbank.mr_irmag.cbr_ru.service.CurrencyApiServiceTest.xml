@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="tbank.mr_irmag.cbr_ru.service.CurrencyApiServiceTest" tests="6" skipped="0" failures="0" errors="0" timestamp="2024-10-10T17:55:02" hostname="Haleds-MBP" time="0.301">
+  <properties/>
+  <testcase name="fetchCurrencyDataWithCode_NegativeCase_ServiceUnavailable_ShouldThrowException()" classname="tbank.mr_irmag.cbr_ru.service.CurrencyApiServiceTest" time="0.276"/>
+  <testcase name="fetchCurrencyDataWithRequest_PositiveCase_ShouldReturnCurrencyData()" classname="tbank.mr_irmag.cbr_ru.service.CurrencyApiServiceTest" time="0.014"/>
+  <testcase name="fetchCurrencyDataWithRequest_NegativeCase_ServiceUnavailable_ShouldThrowException()" classname="tbank.mr_irmag.cbr_ru.service.CurrencyApiServiceTest" time="0.002"/>
+  <testcase name="fallbackFetchCurrencyData_ShouldReturnFallbackMessage()" classname="tbank.mr_irmag.cbr_ru.service.CurrencyApiServiceTest" time="0.002"/>
+  <testcase name="fetchCurrencyDataWithCode_NegativeCase_NullCode_ShouldThrowNullPointerException()" classname="tbank.mr_irmag.cbr_ru.service.CurrencyApiServiceTest" time="0.002"/>
+  <testcase name="fetchCurrencyDataWithCode_PositiveCase_ShouldReturnCurrencyData()" classname="tbank.mr_irmag.cbr_ru.service.CurrencyApiServiceTest" time="0.002"/>
+  <system-out><![CDATA[2024-10-10T22:55:02.674+05:00  INFO 42460 --- [cbr_ru] [    Test worker] t.m.cbr_ru.service.CurrencyApiService    : Successfully retrieved response {} 200 OK
+2024-10-10T22:55:02.681+05:00  WARN 42460 --- [cbr_ru] [    Test worker] t.m.cbr_ru.service.CurrencyApiService    : Fallback executed due to: Some error
+2024-10-10T22:55:02.686+05:00  INFO 42460 --- [cbr_ru] [    Test worker] t.m.cbr_ru.service.CurrencyApiService    : Successfully retrieved response {} 200 OK
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
